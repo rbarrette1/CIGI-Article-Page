@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+@import 'css/custom'
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailembeds_tags %}
+{% block body_class %}template-blogpage{% endblock %}
+
+
+{% block content %}
+    {% block header %}
+        {% for item in page.gallery_images.all %}
+            <div class="header-img">
+                {% image item.image width-100 %}
+                <p>{{ item.caption }}</p>
+            </div>
+        {% endfor %}
+    {% endblock %}  
+
+    {% block body %}  
+        <h1 class="title">{{ page.title }}</h1>
+
+        {{ page.body|richtext }}
+    {% endblock %}
+    
+    {% block footer %}
+        <p class="copyright">© 2018 Centre for International Governance Innovation</p>
+    {% endblock %}
+{% endblock %}
